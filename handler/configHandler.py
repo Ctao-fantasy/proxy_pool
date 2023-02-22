@@ -26,19 +26,19 @@ class ConfigHandler(withMetaclass(Singleton)):
 
     @LazyProperty
     def serverHost(self):
-        return os.environ.get("HOST", setting.HOST)
+        return setting.HOST
 
     @LazyProperty
     def serverPort(self):
-        return os.environ.get("PORT", setting.PORT)
+        return setting.PORT
 
     @LazyProperty
     def dbConn(self):
-        return os.getenv("DB_CONN", setting.DB_CONN)
+        return setting.DB_CONN
 
     @LazyProperty
     def tableName(self):
-        return os.getenv("TABLE_NAME", setting.TABLE_NAME)
+        return setting.TABLE_NAME
 
     @property
     def fetchers(self):
