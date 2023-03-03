@@ -14,15 +14,14 @@
 """
 __author__ = 'JHao'
 
-from datetime import datetime
-from threading import Thread
-
-from handler.configHandler import ConfigHandler
-from handler.logHandler import LogHandler
-from handler.proxyHandler import ProxyHandler
-from helper.validator import ProxyValidator
 from util.six import Empty
+from threading import Thread
+from datetime import datetime
 from util.webRequest import WebRequest
+from handler.logHandler import LogHandler
+from helper.validator import ProxyValidator
+from handler.proxyHandler import ProxyHandler
+from handler.configHandler import ConfigHandler
 
 
 class DoValidator(object):
@@ -148,8 +147,8 @@ def Checker(tp, queue):
     :return:
     """
     thread_list = list()
-    # for index in range(20):
-    #     thread_list.append(_ThreadChecker(tp, queue, "thread_%s" % str(index).zfill(2)))
+    for index in range(20):
+        thread_list.append(_ThreadChecker(tp, queue, "thread_%s" % str(index).zfill(2)))
 
     for thread in thread_list:
         thread.setDaemon(True)

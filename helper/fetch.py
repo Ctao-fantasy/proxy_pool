@@ -13,12 +13,12 @@
 __author__ = 'JHao'
 
 from threading import Thread
-
-from fetcher.proxyFetcher import ProxyFetcher
-from handler.configHandler import ConfigHandler
+from helper.proxy import Proxy
+from helper.check import DoValidator
 from handler.logHandler import LogHandler
 from handler.proxyHandler import ProxyHandler
-from helper.proxy import Proxy
+from fetcher.proxyFetcher import ProxyFetcher
+from handler.configHandler import ConfigHandler
 
 
 class _ThreadFetcher(Thread):
@@ -83,6 +83,6 @@ class Fetcher(object):
             thread.join()
 
         self.log.info("ProxyFetch - all complete!")
-        # for _ in proxy_dict.values():
-        #     if DoValidator.preValidator(_.proxy):
-        #         yield _
+        for _ in proxy_dict.values():
+            if DoValidator.preValidator(_.proxy):
+                yield _
